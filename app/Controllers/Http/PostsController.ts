@@ -4,7 +4,7 @@ import PostValidator from 'App/Validators/PostValidator'
 
 export default class PostsController {
   public async index({}: HttpContextContract) {
-    const posts = await Post.all()
+    const posts = await Post.query().orderBy('created_at', 'desc').preload('author')
 
     return posts
   }

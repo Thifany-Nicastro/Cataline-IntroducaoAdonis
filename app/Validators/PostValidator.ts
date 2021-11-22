@@ -9,7 +9,7 @@ export default class PostValidator {
       rules.unique({
         table: 'posts',
         column: 'title',
-        whereNot: { id: this.ctx.params.id },
+        whereNot: this.ctx.params.id ? { id: this.ctx.params.id } : undefined,
       }),
     ]),
     content: schema.string({ trim: true }),
